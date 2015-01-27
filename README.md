@@ -1,4 +1,4 @@
-# nycgraffiti_map2
+# nycgraffiti_map
 Repository for OpenSource project NYC Graffiti Map
 
 
@@ -17,7 +17,7 @@ GeoServer version 2.5 or later
 
 pgAdmin III version 1.18.2 or later
 
-If you are using OSGeo-Live these programs come pre-installed
+If you are using OSGeo-Live, these programs come pre-installed.
 
 #External Libraries requiring internet access or local copy:
 d3.js – http://d3js.org/d3.v3.min.js
