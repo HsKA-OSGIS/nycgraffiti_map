@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	
+        <title>NYC Graffiti</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<!-- Scripts go here -->
+       
+		<script src="jquery-1.11.2.min.js"></script>
+		<script src="jquery-migrate-1.2.1.min.js"></script>
+		<script src="jquery-1.11.2.js"></script>
+        <script src='http://ol3js.org/en/master/build/ol.js'></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="jquery.min.js" type="text/javascript"></script>
+		<script src="../resources/example-behaviour.js" type="text/javascript"></script>
+		<script src="loader.js?id=popup" type="text/javascript"></script>
+		<script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+		<script src="external/jquery/jquery.js"></script>
+		<script src="jquery-ui.min.js"></script>
+
+		
+        <!-- Styles go here -->
+        <link rel='stylesheet' href='http://ol3js.org/en/master/css/ol.css'>
+		<link rel="stylesheet" type="text/css" href="mystyle.css">
+		<link rel="stylesheet" href="../css/ol.css" type="text/css">
+		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="../resources/layout.css" type="text/css">
+		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap-responsive.min.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="geoext/resources/css/popup.css">
+    </head>
+    
+    <body >
+        <div id='map'>			
+			<div id="layersContainer">
+				<div id="layersTitle">TABLE OF CONTENTS</div>
+					<div id="layerThemes">
+						<ul>
+						<li a href="#layerThemes2" class="selected">Indicators</a></li>
+
+						</ul>
+			
+							<div id="layerThemes2" class="layerThemes2">
+							<span id="layer_list">
+							  <input type="checkbox" name="toc" id="graffiti" value="1" onclick="myCheckbox6()"><label for="graffiti"><span></span>Graffiti Locations</label><br><br>
+							  
+							  <input type="checkbox" name="toc" id="afterschools" value="2" onclick="myCheckbox8();"><label for="afterschools"><span></span>Afterschool programs</label><br><br>
+							 
+							  <input type="checkbox" name="toc" id="heatmap" value="8" onclick="myCheckbox7()" checked=true><label for="graffiti"><span></span>Heatmap</label><br>
+							  <input class="opacity" id="slider1" type="range" min="0" max="1" step="0.01" value="5" onchange="updateOpacity5(this.value)"/><br>
+							  
+							  <input type="checkbox" name="toc" id="income" value="3" onclick="myCheckbox4()"><label for="income"><span></span>Income</label><br>
+							  <input type="checkbox" name="toc" id="income_legend" value="8" onclick="show_legend_income()"><label id="label_income" for="income_legend"><span></span>Show Legend</label><br>
+							  <input class="opacity" id="slider1" type="range" min="0" max="1" step="0.01" value="2" onchange="updateOpacity2(this.value)"/><br>
+							
+							  <input type="checkbox" name="toc" id="education" value="4" onclick="myCheckbox5()"><label for="education"><span></span>Education</label><br>
+							  <input type="checkbox" name="toc" id="education_legend" value="9" onclick="show_legend_education()"><label id="label_education" for="education_legend"><span></span>Show Legend</label><br>
+							  <input class="opacity" id="slider2" type="range" min="0" max="1" step="0.01" value="3" onchange="updateOpacity3(this.value)"/><br>
+							  
+							  <input type="checkbox" name="toc" id="poverty" value="5" onclick="myCheckbox3()"><label for="poverty" ><span></span>Poverty</label><br>
+							  <input type="checkbox" name="toc" id="poverty_legend" value="10" onclick="show_legend_poverty()"><label id="label_poverty" for="poverty_legend"><span></span>Show Legend</label><br>
+							  <input class="opacity" id="slider3" type="range" min="0" max="1" step="0.01" value="4" onchange="updateOpacity4(this.value)"/><br>
+							  
+							  <input type="checkbox" name="toc" id="boundaries" value="6" onclick="myCheckbox()" checked=true><label for="boundaries"><span></span>Borough Boundaries</label><br>				  
+							  <input class="opacity" id="slider4" type="range" min="0" max="1" step="0.01"  value="1" onchange="updateOpacity(this.value)"><br>
+							  
+							  <input type="checkbox" name="toc" id="basemap" value="7" onclick="myCheckbox2()" checked=true><label for="basemap"><span></span>Basemap</label><br>
+							</span>
+							</div>
+						
+					</div>	
+					
+			</div>
+						
+			<input type='button' id='about' value='About'>
+			
+			<div id="about_div" style="display:none">
+				<p><b>Dear User,</b><br><br>Welcome to the <i>NYC Graffiti</i> map developed by two passionate students from the <i>Geomatics</i> department of the Hochschule Karlsruhe Technik und Wirtschaft!We prepared for you an educational and visually appealing tool that will help you study graffiti in the NYC. <br><br>The options in the Table of Contents give you the freedom to set which variables you want to visualize, to control their transparency and to show or hide the legends.<br><br>Use the button on the lower right side of the map to explore the various diagrams that will provide you with statistics about the visualized layers.<br><br>We wish you a pleasant and fruitful experience!</p>
+			</div>		
+			
+			<div id="title">
+			<table  width=100%>
+				<tr align="center">
+					<td><font color=#ffffff><b>Exploring NYC Graffiti</b></font></td>
+				</tr>
+				<tr align="right" width=100% >
+					<td><font color=#ffffff size=2px><b>Developed by the <i>nyc graffiti</i> team</b></font></td>
+				</tr>
+			</table>
+			</div>
+			
+			<div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
+			</div>
+			
+			<div id='graphs'>
+					<div id='firstdropdown' class="btn-group">
+						<form name="form1">
+							<select name="drop_Att" class="dropdown-menu" onchange="renderChart();">
+								<option value='Graffiti'>Graffiti</option>
+								<option value='Education'>Education</option>
+								<option value='Income'>Income</option>
+								<option value='Poverty'>Poverty</option>
+							</select>
+						</form>
+					</div>
+					<div id='seconddropdown' class="btn-group">
+						<form name="form2">
+							<select name="drop_Loc" class="dropdown-menu" onchange="renderChart();">
+								<option value='NYC'>NYC</option>
+								<option value='Bronx'>Bronx</option>
+								<option value='Brooklyn'>Brooklyn</option>
+								<option value='Manhattan'>Manhattan</option>
+								<option value='Queens'>Queens</option>
+								<option value='Staten Island'>Staten Island</option>
+							</select>
+						</form>
+					</div>
+				<p id="graph_Title" style="display:inline" >Test</p>
+				<div id="chart"></div>
+			</div>
+		
+			<div id="showhide"></div>
+			<div id="hide_show"></div>
+		
+		
+<div id = "legdiv_income"><p align='center'><b>Mean Household Income</b></p>
+	<table id = "legend_income">
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#edf8e9;"></div></td>
+		<td><input type="text" id="leg0" value = "  No Data" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px;">No Data</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color: #c7e9c0;"></div></td>
+		<td><input type="text" id="leg1" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px;">$ 0-35,000</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#a1d99b;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">$ 35,001-55,000</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#74c476;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">$ 55,001-75,000</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#31a354;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">$ 75,001-115,000</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#006d2c;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">> $ 115,000</td>
+	</tr>
+	</table>
+</div>
+
+
+<div id = "legdiv_education"><p align='center'><b>Percentage Population <br> without High School Education</b></p>
+	<table id = "legend_education">
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#edf8fb;"></div></td>
+		<td><input type="text" id="leg0" value = "  No Data" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px;">No Data</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color: #bfd3e6;"></div></td>
+		<td><input type="text" id="leg1" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px;">0-10 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#9ebcda;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">11 - 20 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#8c96c6;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">21 - 30 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#8856a7;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">31 - 40 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#810f7c;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">> 40 %</td>
+	</tr>
+	</table>
+</div>
+
+
+<div id = "legdiv_poverty"><p align='center'><b>Percentage Population <br> below Poverty Level</b></p>
+	<table id = "legend_poverty"> 
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#fee5d9;"></div></td>
+		<td><input type="text" id="leg0" value = "  No Data" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px;">No Data</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color: #fcbba1;"></div></td>
+		<td><input type="text" id="leg1" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px;">0-10 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#fc9272;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">11 - 20 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#fb6a4a;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">21 - 30 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#de2d26;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">31 - 40 %</td>
+	</tr>
+	<tr>
+		<td><div style="width:20px;height:15px;border:1px solid #fff;background-color:#a50f15;"></div></td>
+		<td><input type="text" id="leg2" readonly style="border:0; background-color:rgba(255, 255, 255,.0); color:#fff; width: 5px; font: 15px/100% 'Vollkorn', serif;">> 40 %</td>
+	</tr>
+	</table>
+</div>
+
+<script>
+
+OpenLayers.ProxyHost="/cgi-bin/proxy.cgi?url=";
+		
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
+
+	var overlay = new ol.Overlay({
+	  element: container
+	});
+
+	/**
+	 * Create the map.
+	 */
+	var map = new ol.Map({
+		target : 'map',
+		renderer : 'canvas',
+		overlays: [overlay],
+		target: 'map',
+		view: new ol.View({
+				projection : 'EPSG:900913',
+				center : [-8220000.15, 4970000.686],
+				zoom : 11
+	  })
+	});
+
+	
+	// defining layer variables
+	var newLayer = new ol.layer.Tile({
+		source : new ol.source.OSM(),
+		isbaselayer:true,
+	});
+	
+	var newLayer2 = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'HeatMap4', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+
+
+	var vectorLayer = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'borough_boundaries', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+	
+	var vectorLayer2 = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'graffiti_locations', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+	
+	
+	var vectorLayer3 = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'census_tracts_poverty', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+
+	
+	var vectorLayer4 = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'census_tracts_income', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+	
+	var vectorLayer5 = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'census_tracts_education', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+
+	var vectorLayer6 = new ol.layer.Tile({
+		source : new ol.source.TileWMS({
+			preload : Infinity,
+			url : 'http://localhost:8082/geoserver/wms?',
+			serverType : 'geoserver',
+			params : {'LAYERS': 'after_school_programs', TILED:true},
+			singletile:true,
+			isbaselayer:false,
+		})
+	})
+	;
+	
+	// adding layers to the map and controlling visibility when opening the map
+	function loadMap(){
+	map.addLayer(newLayer);
+	map.addLayer(vectorLayer);
+	map.addLayer(vectorLayer3);
+	map.addLayer(vectorLayer5);
+	map.addLayer(vectorLayer4);
+	map.addLayer(newLayer2);
+	map.addLayer(vectorLayer6);
+	map.addLayer(vectorLayer2);
+	vectorLayer2.setVisible(false);
+	vectorLayer3.setVisible(false);
+	vectorLayer4.setVisible(false);
+	vectorLayer5.setVisible(false);
+	vectorLayer6.setVisible(false);
+	}
+	
+	loadMap();
+	
+	var view = new ol.View({
+			projection : 'EPSG:900913',
+			center : [-8240000.15, 4970000.686],
+			zoom : 11
+	});
+	
+	// info window
+	map.on('click', function(evt) {
+		var coordinate = evt.coordinate;
+		var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+		  coordinate, 'EPSG:3857', 'EPSG:4326'));
+		
+		var viewResolution = /** @type {number} */ (view.getResolution());
+		var url = vectorLayer.getSource().getGetFeatureInfoUrl(
+			  coordinate, viewResolution, 'EPSG:3857',
+			  {'INFO_FORMAT': 'text/html', 'propertyName':'boroname'});
+	  overlay.setPosition(coordinate);
+	  content.innerHTML = '<p>You are here:</p><code>' + hdms + '<iframe id="iframe" seamless src="' + url + '" width="300" height="90"></iframe>' + '</code>';
+	  container.style.visibility='visible';	 
+	  container.style.display = 'block';
+	});
+	
+
+	
+	//setting layer control	
+	function myCheckbox(){
+		if (document.getElementById('boundaries').checked==true)
+		{
+		 vectorLayer.setVisible(true);
+		 }
+		else {
+		 vectorLayer.setVisible(false);
+		}
+	}
+
+	function myCheckbox2(){
+		if (document.getElementById('basemap').checked==true)
+		{
+		 newLayer.setVisible(true);
+		 }
+		else {
+		 newLayer.setVisible(false);
+		}
+	}
+
+	function myCheckbox3(){
+		if (document.getElementById('poverty').checked==true)
+		{
+		 vectorLayer3.setVisible(true);
+		 }
+		else {
+		 vectorLayer3.setVisible(false);
+		}
+	}
+	
+	function myCheckbox4(){
+		if (document.getElementById('income').checked==true)
+		{
+		 vectorLayer4.setVisible(true);
+		 }
+		else {
+		vectorLayer4.setVisible(false);
+		}
+	}
+
+	function myCheckbox5(){
+		if (document.getElementById('education').checked==true)
+		{
+		 vectorLayer5.setVisible(true);
+		 }
+		else {
+		 vectorLayer5.setVisible(false);
+		}
+	}
+
+	function myCheckbox6(){
+		if (document.getElementById('graffiti').checked==true)
+		{
+		 vectorLayer2.setVisible(true);
+		 }
+		else {
+		 vectorLayer2.setVisible(false);
+		}
+	}
+	
+	function myCheckbox7(){
+		if (document.getElementById('heatmap').checked==true)
+		{
+		 newLayer2.setVisible(true);
+		 }
+		else {
+		 newLayer2.setVisible(false);
+		}
+	}
+
+	function myCheckbox8(){
+		if (document.getElementById('afterschools').checked==true)
+		{
+		 vectorLayer6.setVisible(true);
+		 }
+		else {
+		 vectorLayer6.setVisible(false);
+		}
+	}
+	
+	
+	//setting legend control
+	function show_legend_income(){
+		if (document.getElementById('income').checked==true)
+		{ 
+			if (document.getElementById('income_legend').checked==true){
+				if (document.getElementById('poverty_legend').checked==false & document.getElementById('education_legend').checked==false) {
+				document.getElementById('legdiv_income').style.visibility="visible";
+				}
+			}
+			else {
+				document.getElementById('legdiv_income').style.visibility="hidden";
+			}			 
+		}
+	}
+	
+	$('#income').click(function(){
+    this.checked?$('#income_legend,#legdiv_income, #label_income').show(500):$('#income_legend,#legdiv_income, #label_income').hide(500);
+	});
+	
+	function show_legend_education(){
+		if (document.getElementById('education').checked==true)
+		{ 
+			if (document.getElementById('education_legend').checked==true){
+				if (document.getElementById('poverty_legend').checked==false & document.getElementById('income_legend').checked==false) {
+				document.getElementById('legdiv_education').style.visibility="visible";
+				}
+			 }
+			 else {
+				document.getElementById('legdiv_education').style.visibility="hidden";
+			}
+		 }
+	}
+
+	$('#education').click(function(){
+    this.checked?$('#education_legend,#legdiv_education, #label_education').show(500):$('#education_legend,#legdiv_education, #label_education').hide(500);
+	});
+	
+	function show_legend_poverty(){
+		if (document.getElementById('poverty').checked==true)
+		{ 
+			if (document.getElementById('poverty_legend').checked==true){
+				if (document.getElementById('education_legend').checked==false & document.getElementById('income_legend').checked==false) {
+				document.getElementById('legdiv_poverty').style.visibility="visible";
+				}
+			 }
+			 else {
+				document.getElementById('legdiv_poverty').style.visibility="hidden";
+			} 
+		 }
+	}
+	
+	$('#poverty').click(function(){
+    this.checked?$('#poverty_legend,#legdiv_poverty, #label_poverty').show(500):$('#poverty_legend,#legdiv_poverty, #label_poverty').hide(500);
+	});
+	
+	
+	//setting transparency control
+	function updateOpacity(value){
+		vectorLayer.setOpacity(value);
+	}
+	
+	function updateOpacity2(value){
+		vectorLayer4.setOpacity(value);
+	}
+
+	function updateOpacity3(value){
+		vectorLayer5.setOpacity(value);
+	}
+	
+	function updateOpacity4(value){
+		vectorLayer3.setOpacity(value);
+	}
+
+	function updateOpacity5(value){
+		newLayer2.setOpacity(value);
+	}
+	
+	// info window closer
+	closer.onclick = function() {
+		if (document.getElementById('popup').style.visibility="visible"){
+			document.getElementById('popup').style.visibility="hidden";
+		}
+		else {
+			document.getElementById('popup').style.visibility="visible";
+		}
+	}
+	
+	// toggle about section
+	$("#about").click(function() { 
+		$("#about_div").toggle('slow');
+	});
+	
+	// setting graph controls
+function renderChart(graph, color, g_title, g_xaxis, g_yaxis, barWidth, labelWidth, valueWidth) {
+		var graph = "";
+		var color = "";
+		var g_title = "";
+		var g_xaxis = "";
+		var g_yaxis = "";
+		var barWidth="";
+		var labelWidth="";
+		var valueWidth="";
+		if (document.form1.drop_Att.value == "Graffiti" && document.form2.drop_Loc.value == "NYC"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#graffiti_nyc';
+		color = '#B31212';
+		g_title = "Distribution of Graffiti Locations";
+		g_xaxis = "Borough";
+		g_yaxis = "Count";
+		barWidth=310;
+		labelWidth=88;
+		valueWidth=42;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Graffiti" && document.form2.drop_Loc.value == "Bronx"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#graffiti_date_bronx';
+		color = '#B31212';
+		g_title = "Graffiti Reported by Month";
+		g_xaxis = "Month";
+		g_yaxis = "Count";
+		barWidth=370;
+		labelWidth=36;
+		valueWidth=36;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Graffiti" && document.form2.drop_Loc.value == "Brooklyn"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#graffiti_date_brooklyn';
+		color = '#B31212';
+		g_title = "Graffiti Reported by Month";
+		g_xaxis = "Month";
+		g_yaxis = "Count";
+		barWidth=370;
+		labelWidth=36;
+		valueWidth=36;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Graffiti" && document.form2.drop_Loc.value == "Manhattan"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#graffiti_date_manhattan';
+		color = '#B31212';
+		g_title = "Graffiti Reported by Month";
+		g_xaxis = "Month";
+		g_yaxis = "Count";
+		barWidth=370;
+		labelWidth=36;
+		valueWidth=36;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Graffiti" && document.form2.drop_Loc.value == "Queens"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#graffiti_date_queens';
+		color = '#B31212';
+		g_title = "Graffiti Reported by Month";
+		g_xaxis = "Month";
+		g_yaxis = "Count";
+		barWidth=370;
+		labelWidth=36;
+		valueWidth=36;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Graffiti" && document.form2.drop_Loc.value == "Staten Island"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#graffiti_date_staten_island';
+		color = '#B31212';
+		g_title = "Graffiti Reported by Month";
+		g_xaxis = "Month";
+		g_yaxis = "Count";
+		barWidth=370;
+		labelWidth=36;
+		valueWidth=36;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Income" && document.form2.drop_Loc.value == "NYC"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#income_nyc';
+		color = '#006d2c';
+		g_title = "Average Census Tract Income";
+		g_xaxis = "Income";
+		g_yaxis = "Count";
+		barWidth=270;
+		labelWidth=145;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Income" && document.form2.drop_Loc.value == "Bronx"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#income_bronx';
+		color = '#006d2c';
+		g_title = "Average Census Tract Income";
+		g_xaxis = "Income";
+		g_yaxis = "Count";
+		barWidth=275;
+		labelWidth=145;
+		valueWidth=53;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Income" && document.form2.drop_Loc.value == "Brooklyn"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#income_brooklyn';
+		color = '#006d2c';
+		g_title = "Average Census Tract Income";
+		g_xaxis = "Income";
+		g_yaxis = "Count";
+		barWidth=270;
+		labelWidth=145;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Income" && document.form2.drop_Loc.value == "Manhattan"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#income_manhattan';
+		color = '#006d2c';
+		g_title = "Average Census Tract Income";
+		g_xaxis = "Income";
+		g_yaxis = "Count";
+		barWidth=270;
+		labelWidth=145;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Income" && document.form2.drop_Loc.value == "Queens"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#income_queens';
+		color = '#006d2c';
+		g_title = "Average Census Tract Income";
+		g_xaxis = "Income";
+		g_yaxis = "Count";
+		barWidth=270;
+		labelWidth=145;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Income" && document.form2.drop_Loc.value == "Staten Island"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#income_staten_island';
+		color = '#006d2c';
+		g_title = "Average Census Tract Income";
+		g_xaxis = "Income";
+		g_yaxis = "Count";
+		barWidth=275;
+		labelWidth=145;
+		valueWidth=53;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Poverty" && document.form2.drop_Loc.value == "NYC"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#poverty_nyc';
+		color = '#a50f15';
+		g_title = "People Below Poverty Level (% below Poverty)";
+		g_xaxis = "Poverty";
+		g_yaxis = "Count";
+		barWidth=335;
+		labelWidth=42;
+		valueWidth=65;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Poverty" && document.form2.drop_Loc.value == "Bronx"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#poverty_bronx';
+		color = '#a50f15';
+		g_title = "People Below Poverty Level (% below Poverty)";
+		g_xaxis = "Poverty";
+		g_yaxis = "Count";
+		barWidth=342;
+		labelWidth=42;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Poverty" && document.form2.drop_Loc.value == "Brooklyn"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#poverty_brooklyn';
+		color = '#a50f15';
+		g_title = "People Below Poverty Level (% below Poverty)";
+		g_xaxis = "Poverty";
+		g_yaxis = "Count";
+		barWidth=342;
+		labelWidth=42;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Poverty" && document.form2.drop_Loc.value == "Manhattan"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#poverty_manhattan';
+		color = '#a50f15';
+		g_title = "People Below Poverty Level (% below Poverty)";
+		g_xaxis = "Poverty";
+		g_yaxis = "Count";
+		barWidth=342;
+		labelWidth=42;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Poverty" && document.form2.drop_Loc.value == "Queens"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#poverty_queens';
+		color = '#a50f15';
+		g_title = "People Below Poverty Level (% below Poverty)";
+		g_xaxis = "Poverty";
+		g_yaxis = "Count";
+		barWidth=342;
+		labelWidth=42;
+		valueWidth=58;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Poverty" && document.form2.drop_Loc.value == "Staten Island"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#poverty_staten_island';
+		color = '#a50f15';
+		g_title = "People Below Poverty Level (% below Poverty)";
+		g_xaxis = "Poverty";
+		g_yaxis = "Count";
+		barWidth=350;
+		labelWidth=42;
+		valueWidth=50;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Education" && document.form2.drop_Loc.value == "NYC"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#education_nyc';
+		color = '#810f7c';
+		g_title = "Level of Education";
+		g_xaxis = "Education";
+		g_yaxis = "Count";
+		barWidth=280;
+		labelWidth=98;
+		valueWidth=65;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Education" && document.form2.drop_Loc.value == "Bronx"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#education_bronx';
+		color = '#810f7c';
+		g_title = "Level of Education";
+		g_xaxis = "Education";
+		g_yaxis = "Count";
+		barWidth=288;
+		labelWidth=98;
+		valueWidth=57;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Education" && document.form2.drop_Loc.value == "Brooklyn"){
+		document.querySelector( '#chart' ).innerHTML = '';	
+		graph = '#education_brooklyn';
+		color = '#810f7c';
+		g_title = "Level of Education";
+		g_xaxis = "Education";
+		g_yaxis = "Count";
+		barWidth=288;
+		labelWidth=98;
+		valueWidth=57;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Education" && document.form2.drop_Loc.value == "Manhattan"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#education_manhattan';
+		color = '#810f7c';
+		g_title = "Level of Education";
+		g_xaxis = "Education";
+		g_yaxis = "Count";
+		barWidth=288;
+		labelWidth=98;
+		valueWidth=57;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Education" && document.form2.drop_Loc.value == "Queens"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#education_queens';
+		color = '#810f7c';
+		g_title = "Level of Education";
+		g_xaxis = "Education";
+		g_yaxis = "Count";
+		barWidth=288;
+		labelWidth=98;
+		valueWidth=57;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		else if (document.form1.drop_Att.value == "Education" && document.form2.drop_Loc.value == "Staten Island"){
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#education_staten_island';
+		color = '#810f7c';
+		g_title = "Level of Education";
+		g_xaxis = "Education";
+		g_yaxis = "Count"
+		barWidth=288;
+		labelWidth=98;
+		valueWidth=57;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}		
+		else {
+		document.querySelector( '#chart' ).innerHTML = '';		
+		graph = '#graffiti_nyc';
+		color = '#B31212';
+		g_title = "Distribution of Graffiti Locations";
+		g_xaxis = "Borough";
+		g_yaxis = "Count";
+		barWidth=310;
+		labelWidth=88;
+		valueWidth=42;
+		document.querySelector( '#graph_Title' ).innerHTML =g_title;
+		}
+		
+		var data = d3.csv.parse(d3.select(graph).text());
+		var valueLabelWidth = valueWidth; // space reserved for value labels (right)
+		var barHeight = 15; // height of one bar
+		var barLabelWidth = labelWidth; // space reserved for bar labels
+		var barLabelPadding = 5; // padding between bar and bar labels (left)
+		var gridLabelHeight = 18; // space reserved for gridline labels
+		var gridChartOffset = 3; // space between start of grid and first bar
+		var maxBarWidth = barWidth; // width of the bar with the max value
+		 
+		// accessor functions 
+		var barLabel = function(d) { return d[g_xaxis]; };
+		var barValue = function(d) { return parseFloat(d[g_yaxis]); };
+		 
+		// scales
+		var yScale = d3.scale.ordinal().domain(d3.range(0, data.length)).rangeBands([0, data.length * barHeight]);
+		var y = function(d, i) { return yScale(i); };
+		var yText = function(d, i) { return y(d, i) + yScale.rangeBand() / 2; };
+		var x = d3.scale.linear().domain([0, d3.max(data, barValue)]).range([0, maxBarWidth]);
+		// svg container element
+		var chart = d3.select('#chart').append("svg")
+		  .attr('width', maxBarWidth + barLabelWidth + valueLabelWidth)
+		  .attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight);
+		// bar labels
+		var labelsContainer = chart.append('g')
+		  .attr('transform', 'translate(' + (barLabelWidth - barLabelPadding) + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+		labelsContainer.selectAll('text').data(data).enter().append('text')
+		  .attr('y', yText)
+		  .attr('stroke', 'none')
+		  .attr('fill', 'white')
+		  .attr("dy", ".35em") // vertical-align: middle
+		  .attr('text-anchor', 'end')
+		  .text(barLabel);
+		// bars
+		var barsContainer = chart.append('g')
+		  .attr('transform', 'translate(' + barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+		barsContainer.selectAll("rect").data(data).enter().append("rect")
+		  .attr('y', y)
+		  .attr('height', yScale.rangeBand())
+		  .attr('width', function(d) { return x(barValue(d)); })
+		  .attr('stroke', 'white')
+		  .attr('fill', color);
+		// bar value labels
+		barsContainer.selectAll("text").data(data).enter().append("text")
+		  .attr("x", function(d) { return x(barValue(d)); })
+		  .attr("y", yText)
+		  .attr("dx", 3) // padding-left
+		  .attr("dy", ".35em") // vertical-align: middle
+		  .attr("text-anchor", "start") // text-align: right
+		  .attr("fill", "white")
+		  .attr("stroke", "none")
+		  .text(function(d) { return d3.round(barValue(d), 2); });
+		// start line
+		barsContainer.append("line")
+		  .attr("y1", -gridChartOffset)
+		  .attr("y2", yScale.rangeExtent()[1] + gridChartOffset)
+		  .style("stroke", "#FFFFFF");
+
+	}
+
+	var button_beg = '<button id="buttonGraphDiv" onclick="showhide()" >', button_end = '</button>';
+    var show_button = 'Show Diagram', hide_button = 'Hide Diagram';
+    function showhide() {
+        var div = document.getElementById( "graphs" );
+        var showhide = document.getElementById( "showhide" );
+        if ( div.style.display !== "none" ) {
+            div.style.display = "none";
+            button = show_button;
+            showhide.innerHTML = button_beg + button + button_end;
+        } else {
+            div.style.display = "block";
+            button = hide_button;
+            showhide.innerHTML = button_beg + button + button_end;
+        }
+    }
+    function setup_button( status ) {
+        if ( status == 'show' ) {
+            button = hide_button;
+        } else {
+            button = show_button;
+        }
+        var showhide = document.getElementById( "showhide" );
+        showhide.innerHTML = button_beg + button + button_end;
+    }
+    window.onload = function () {
+        setup_button( 'hide' );
+        showhide(); // if setup_button is set to 'show' comment this line
+    }
+	
+</script>
+
+   <script id="graffiti_nyc" type="text/csv">Borough,Count
+		Bronx,3015
+		Brooklyn,6746
+		Queens,2935
+		Manhattan,2518
+		Staten Island,305 </script>
+	<script id="graffiti_date_nyc" type="text/csv">Month,Count
+		Jan,1528
+		Feb,1163
+		Mar,1400
+		Apr,1571
+		May,1571
+		Jun,1570
+		Jul,1055
+		Aug,1292
+		Sept,1069
+		Oct,1329
+		Nov,1044
+		Dec,1239 </script>
+	<script id="graffiti_date_bronx" type="text/csv">Month,Count
+		Jan,190
+		Feb,269
+		Mar,360
+		Apr,179
+		May,234
+		Jun,386
+		Jul,207
+		Aug,246
+		Sept,133
+		Oct,262
+		Nov,266
+		Dec,283 </script>
+	<script id="graffiti_date_brooklyn" type="text/csv">Month,Count
+		Jan,816
+		Feb,261
+		Mar,519
+		Apr,529
+		May,770
+		Jun,597
+		Jul,456
+		Aug,706
+		Sept,564
+		Oct,616
+		Nov,428
+		Dec,484 </script>
+	<script id="graffiti_date_manhattan" type="text/csv">Month,Count
+		Jan,128
+		Feb,315
+		Mar,171
+		Apr,204
+		May,272
+		Jun,340
+		Jul,186
+		Aug,113
+		Sept,181
+		Oct,233
+		Nov,127
+		Dec,248 </script>
+	<script id="graffiti_date_queens" type="text/csv">Month,Count
+		Jan,371
+		Feb,287
+		Mar,314
+		Apr,317
+		May,276
+		Jun,215
+		Jul,189
+		Aug,212
+		Sept,168
+		Oct,190
+		Nov,195
+		Dec,201 </script>
+	<script id="graffiti_date_staten_island" type="text/csv">Month,Count
+		Jan,23
+		Feb,31
+		Mar,36
+		Apr,30
+		May,19
+		Jun,32
+		Jul,17
+		Aug,15
+		Sept,23
+		Oct,28
+		Nov,28
+		Dec,23 </script>
+	<script id="income_nyc" type="text/csv">Income,Count
+		Less Than $10k,323008
+		$10k to $15k,187733
+		$15k to $25k,325291
+		$25k to $35k,287444
+		$35k to $50k,364762
+		$50k to $75k,489460
+		$75k to $100k,331356
+		$100k to $150k,378540
+		$150k to $200k,164067
+		More than $200k,211702 </script>
+	<script id="income_bronx" type="text/csv">Income,Count
+		Less Than $10k,76329
+		$10k to $15k,42363
+		$15k to $25k,67773
+		$25k to $35k,53279
+		$35k to $50k,64285
+		$50k to $75k,72626
+		$75k to $100k,42035
+		$100k to $150k,36246
+		$150k to $200k,11524
+		More than $200k,6814 </script>
+	<script id="income_brooklyn" type="text/csv">Income,Count
+		Less Than $10k,108517
+		$10k to $15k,63284
+		$15k to $25k,105249
+		$25k to $35k,93797
+		$35k to $50k,118071
+		$50k to $75k,148883
+		$75k to $100k,92695
+		$100k to $150k,102772
+		$150k to $200k,41202
+		More than $200k,37476 </script>
+	<script id="income_manhattan" type="text/csv">Income,Count
+		Less Than $10k,72849
+		$10k to $15k,39949
+		$15k to $25k,62200
+		$25k to $35k,53250
+		$35k to $50k,64767
+		$50k to $75k,99697
+		$75k to $100k,71275
+		$100k to $150k,96160
+		$150k to $200k,52904
+		More than $200k,125116 </script>
+	<script id="income_queens" type="text/csv">Income,Count
+		Less Than $10k,54956
+		$10k to $15k,35625
+		$15k to $25k,77852
+		$25k to $35k,75262
+		$35k to $50k,100998
+		$50k to $75k,142422
+		$75k to $100k,101338
+		$100k to $150k,112765
+		$150k to $200k,43697
+		More than $200k,31360</script>
+	<script id="income_staten_island" type="text/csv">Income,Count
+		Less Than $10k,10359
+		$10k to $15k,6512
+		$15k to $25k,12218
+		$25k to $35k,11855
+		$35k to $50k,16642
+		$50k to $75k,25832
+		$75k to $100k,24012
+		$100k to $150k,30597
+		$150k to $200k,14739
+		More than $200k,10935 </script>
+	<script id="poverty_nyc" type="text/csv">Poverty,Count
+		50%,708541
+		125%,1326361
+		150%,419825
+		185%,530242
+		200%,203641 </script>
+	<script id="poverty_bronx" type="text/csv">Poverty,Count
+		50%,176002
+		125%,313778
+		150%,91177
+		185%,104265
+		200%,41148 </script>
+	<script id="poverty_brooklyn" type="text/csv">Poverty,Count
+		50%,254491
+		125%,458872
+		150%,141253
+		185%,173476
+		200%,66746 </script>
+	<script id="poverty_manhattan" type="text/csv">Poverty,Count
+		50%,104200
+		125%,217560
+		150%,62507
+		185%,79468
+		200%,27621 </script>
+	<script id="poverty_queens" type="text/csv">Poverty,Count
+		50%,128472
+		125%,294580
+		150%,108041
+		185%,153395
+		200%,60199 </script>
+	<script id="poverty_staten_island" type="text/csv">Poverty,Count
+		50%,25376
+		125%,41571
+		150%,16847
+		185%,19638
+		200%,7927 </script>
+	<script id="education_nyc" type="text/csv">Education,Count
+		< High School,1160211
+		High School,1389835
+		Some College,1180643
+		BA or Higher,1952325 </script>
+	<script id="education_bronx" type="text/csv">Education,Count
+		< High School,255392
+		High School,229346
+		Some College,203705
+		BA or Higher,154549 </script>
+	<script id="education_brooklyn" type="text/csv">Education,Count
+		< High School,374178
+		High School,472666
+		Some College,356862
+		BA or Higher,524738 </script>
+	<script id="education_manhattan" type="text/csv">Education,Count
+		< High School,171208
+		High School,151518
+		Some College,178668
+		BA or Higher,708422 </script>
+	<script id="education_queens" type="text/csv">Education,Count
+		< High School,322036
+		High School,434989
+		Some College,359986
+		BA or Higher,473193 </script>
+	<script id="education_staten_island" type="text/csv">Education,Count
+		< High School,37397
+		High School,101316
+		Some College,81422
+		BA or Higher,91423 </script>
+	<script>renderChart();</script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+        	#map{
+        		top:0;
+				bottom:0;
+        		width:auto;
+				height:auto;
+				margin-left: auto;
+				margin-right: auto;
+				box-shadow: 0 0 20px #0D0D0D;
+				background-color: #edf8fa;
+				z-index: 1;
+        	}
+			@font-face {
+			font-family: vollkorn;
+			font-style: normal;
+			font-weight: 400;
+			src: url(vollkorn-regular-webfont.woff);
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+        	body{
+        		margin:0;
+				padding:0;
+				background-color: lightgray;
+        	}       	
+        	html{
+        		height:100%;
+        	}
+			#buttons{
+				position: absolute;
+				width: 200px;
+				height:200px;
+				left: 40px;
+				top: 430px;
+				z-index: 9;
+			}
+			#showhide{
+				position: absolute;
+				right: 10px;
+				bottom:3%;
+				z-index: 9;
+			}
+			#legdiv_income{
+				position: absolute;
+				left: 280px;
+				top: 10px;
+				z-index: 10;
+				visibility:hidden;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				font: 14px/100% 'Vollkorn', serif;
+				color: #FFFFFF;				
+			}
+			#legdiv_education{
+				position: absolute;
+				left: 280px;
+				top: 10px;
+				z-index: 10;
+				visibility:hidden;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				font: 14px/100% 'Vollkorn', serif; 
+				color: #FFFFFF;
+			}
+			#legdiv_poverty{
+				position: absolute;
+				left: 280px;
+				top: 10px;
+				z-index: 10;
+				visibility:hidden;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				font: 14px/100% 'Vollkorn', serif;
+				color: #FFFFFF;				
+			}
+			#title {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				z-index: 9;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				min-width: 350px;
+				min-height:50px;
+				font: 25px/100% 'Vollkorn', serif;
+				font-weight: 900; 
+				
+			} 
+			#graphs {
+				position:absolute;
+				right:.5%;
+				bottom:2%;
+				z-index: 9;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				min-width: 450px;
+				min-height:245px;
+			}
+			#firstdropdown {
+				position:absolute;
+				top:5px;
+				right:250px;
+				font: 3px/100% 'Vollkorn', serif; 
+			}
+			#seconddropdown {
+				position:absolute;
+				top:5px;
+				right:120px;
+				font: 3px/100% 'Vollkorn', serif; 
+			}
+			#chart {
+				position:absolute;
+				right:2px;
+				top:35px;
+			}
+			#graph_Title{
+				color: #ffffff;
+				white-space: nowrap;
+				position: absolute;
+				left: 50%;
+				transform: translate(-50%,0%);
+				top: 15px;
+			}
+			.ol-popup {
+				display: none;
+				position: absolute;
+				background-color: rgb(255,255,255);
+				padding: 15px;
+				border-radius: 10px;
+				border: 2px solid rgba(40,40,39,0.75);
+				bottom: 12px;
+				left: -50px;
+				font: 15px/100% 'Vollkorn', serif;
+			}
+			.ol-popup-closer {
+				position: absolute;
+				top: 2px;
+				right: 8px;
+			}
+			.ol-popup-closer:after {
+				content: "x";
+			}
+			#layersContainer {
+				display:inline-block;
+				min-height: 410px;
+				width: 230px;
+				position: absolute;
+				left:3%;
+				top: 10px;
+				background-color: rgba(40,40,39,0.75);
+				z-index: 9;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+			}
+			#layersTitle {
+				padding: 4px 0 4px 10px;
+				letter-spacing: 0px;
+				font: 15px/100% 'Vollkorn', serif;
+				color: #ffffff;
+				background-color: rgba(255,0,0,0.5);
+				border-bottom: 1px solid rgba(35,87,146,0.4);
+				z-index: 6;
+				border-radius: 4px 4px 0 0;
+			}
+			#layerThemes2 {
+				top:40px;
+				padding: 1px;
+				margin: 5px;
+				font: 14px/100% 'Vollkorn', serif;
+				color: #FFFFFF;
+			}
+			#about {
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				position: absolute;
+				top:90px;
+				right: 10px;
+				font: 14px/100% 'Vollkorn', serif;
+				color: #ffffff;
+				z-index: 9;
+			}
+			#about_div {
+				display:inline-block;
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);
+				background-color: rgba(40,40,39,0.75);
+				background-opacity: 0.5;
+				position: absolute;
+				top:90px;
+				right: 70px;
+				max-width:500px;
+				font: 14px/100% 'Vollkorn', serif;
+				color: #ffffff;
+				z-index: 9;			
+			}
+			#income_legend {
+				margin: 15px;
+			}	
+			#education_legend {
+				margin: 15px;
+			}	
+			#poverty_legend {
+				margin: 15px;
+			}	
+			#layerThemes {
+				font: 14px/100% 'Vollkorn', serif;
+				color: #FFFFFF;
+			}
+			#layerThemes ul{
+				margin: 2px 0 0 0;
+				padding: 4px 7px 17px 7px;
+				border-bottom: 1px solid rgba(35,87,146,0.4);
+			}
+			#layerThemes ul li{
+				float: left;
+				margin: 0 2px 0 1px;
+				padding: 2px 7px 2px 7px;
+				font: 13px/100% 'Vollkorn', serif;
+				display: inline-block;
+				border-left: 1px solid rgba(35,87,146,0.4);
+				border-top: 1px solid rgba(35,87,146,0.4);
+				border-right: 1px solid rgba(35,87,146,0.4);
+				border-radius: 3px 3px 0 0;
+				background-color: rgba(255,0,0,0.4);
+				color: #ffffff;
+			}
+			#layerThemes ul li a{
+				color: #ffffff;
+			}
+			#layerThemes ul li.selected{
+				background-color: rgba(255,0,0,0.4);
+			}
+			#layerThemes ul li.unselected:hover{
+				background-color: rgba(255,0,0,0.4);
+				cursor: pointer;
+			}
+			p {
+				font: 14px/100% 'Vollkorn', serif;
+				padding: 5px;
+			}
+			#buttonGraphDiv{
+				font: 14px/100% 'Vollkorn', serif;
+				color: #FFFFFF;
+				background-color: rgba(40,40,39,0.75);
+				border-radius: 6px;
+				border: 2px solid rgba(255,0,0,0.4);				
+			}
+			input[type=checkbox]:not(old){
+			  width     : 2em;
+			  margin    : 0;
+			  padding   : 0;
+			  font-size : 1em;
+			  opacity   : 0;
+			}
+
+			input[type=checkbox]:not(old) + label{
+			  display      : inline-block;
+			  margin-left  : -2em;
+			  line-height  : 1.5em;
+			}
+
+			input[type=checkbox]:not(old) + label > span{
+			  display          : inline-block;
+			  width            : 0.875em;
+			  height           : 0.875em;
+			  margin           : 0.25em 0.5em 0.25em 0.25em;
+			  border           : 0.0625em solid rgb(40,40,39);
+			  border-radius    : 0.25em;
+			  background       : rgb(228, 228, 228);
+			  vertical-align   : bottom;
+			}
+			input[type=checkbox]:not(old):checked + label > span{
+			  background: rgba(255,0,0,0.4);
+			  border: 0.0625em solid rgba(255,0,0,0.4);
+			}
+			input[type=checkbox]:not(old):checked + label > span:before{
+			  content     : '✓';
+			  display     : block;
+			  width       : 1em;
+			  color       : rgb(255,255,255);
+			  font-size   : 0.875em;
+			  line-height : 1em;
+			  text-align  : center;
+			  font-weight : bold;
+			}
