@@ -26,7 +26,7 @@
                <CssParameter name="fill">#B31212</CssParameter>
              </Fill>
            </Mark>
-           <Size>3</Size>
+           <Size>4</Size>
          </Graphic>
        </PointSymbolizer>
      </Rule>
