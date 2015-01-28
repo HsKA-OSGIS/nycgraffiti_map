@@ -53,7 +53,7 @@ Note: If you are using OSGeo-Live, these programs come pre-installed.
 9.	Update lines of code 252,263,274,285,296,307,318 with the names of your layers in GeoServer.
 
 #Important points about the map
+    - The legends that can be accessed by checking the checkboxes in the 'Table of Contents' were designed so that only one is showing at a time. Please keep in mind that you have to deselect one legend before accessing the next. In the same way, a legend will be only visible if the main thematic layer to which it is associated is selected. When this layer is not selected, the legend will not show.
+    - The NYC Graffiti map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. You may experience alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
 
-    The NYC Graffiti map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. You may experience alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
-    The legends that can be accessed by checking the checkboxes in the 'Table of Contents' were designed so that only one is showing at a time. Please keep in mind that you have to deselect one legend before accessing the next. In the same way, a legend will be only visible if the main thematic layer to which it is associated is selected. When this layer is not selected, the legend will not show.
 
