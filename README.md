@@ -62,7 +62,7 @@ Styles: Contains .sld files to style the spatial data.
 3.	In GeoServer create a new workspace and two data stores. One data store should be for PostGIS format and the second should be GeoTiff format.
 4.	In your new workspace, add the 8 '.sld' files from the styles folder. Use the file name to name the style for clarity of distinction. Copy and paste the contents of each file and save the new styles.
 5.	Publish the 6 vector layers in the pgAdmin database to the PostGIS formatted GeoServer data store. The Declared SRSs are EPSG:2263 (NAD83 / New York Long Island (ftUS)) for every layer. Apply the correlated style to each layer.
-6.	Publish the Heatmap.tif to the GeoTiff formatted GeoServer data store. The Declared SRS is EPSG:2263 (NAD83 / New York Long Island (ftUS)). Apply the heat map style to this layer.
+6.	Publish the Heatmap4.tif to the GeoTiff formatted GeoServer data store. The Declared SRS is EPSG:2263 (NAD83 / New York Long Island (ftUS)). Apply the heat map style to this layer.
 7.	Take the contents of the Index folder and place them where you want the webpage to be located.  Make sure you can access GeoGerver and pgAdmin from this location. 
 8.	In the index.html, update lines of code 254,267,279,292,305,317,329 with the location of your GeoServer.
 9.	Update lines of code 256,269,281,294,307,319,331 with the names of your layers in GeoServer.
