@@ -45,4 +45,4 @@ Styles: Contains .sld files to style the spatial data.
 8.	In the index.html, update lines 254,267,279,292,305,317,329 with the location of your GeoServer.
 9.	Update lines 256,269,281,294,307,319,331 with the names of your layers in GeoServer.
 
-Note: The web map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. you may expierence alignment errors on lower resolution monitors or in browsers outside of VirtualBox environment. 
+Note: The web map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. you may expierence alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
