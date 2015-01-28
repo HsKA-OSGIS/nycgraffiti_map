@@ -27,26 +27,20 @@ All datasets used in this project were derived from the following sources:
 *ACS - American Community Survey
 
 #Software Used
-- GeoServer version 2.5 or later
-
-- pgAdmin III version 1.18.2 or later
+    - GeoServer version 2.5 or later
+    - pgAdmin III version 1.18.2 or later
 
 Note: If you are using OSGeo-Live, these programs come pre-installed.
 
 #External Libraries requiring internet access or local copy:
-- d3.js – http://d3js.org/d3.v3.min.js
-
-- Open Layers 3 – http://ol3js.org/en/master/build/ol.js
-
-- Open Layers 3  css  - http://ol3js.org/en/master/css/ol.css
-
+    - d3.js – http://d3js.org/d3.v3.min.js
+    - Open Layers 3 – http://ol3js.org/en/master/build/ol.js
+    - Open Layers 3  css  - http://ol3js.org/en/master/css/ol.css
 
 #Data Structure:
-Data: Contains all spatial data for this project.
-
-Index: Contains the files and references for the webpage.
-
-Styles: Contains .sld files to style the spatial data.
+    Data: Contains all spatial data for this project.
+    Index: Contains the files and references for the webpage. 
+    Styles: Contains .sld files to style the spatial data.
 
 #Installation Steps:
 1.	Create a new database in pgAdmin.
