@@ -9,7 +9,7 @@ The NYC Graffiti map has been developed by two passionate students from the Geom
 Please see the file called 'License'.
 
 # Authors
-Alex Boie - boal013@hs-karlsruhe.de
+Alex Boie - boal1013@hs-karlsruhe.de
 
 Cristina Balmus - bacr1012@hs-karlsruhe.de
 
