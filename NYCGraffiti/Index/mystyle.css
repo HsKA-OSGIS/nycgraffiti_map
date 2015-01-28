@@ -1,30 +1,30 @@
-        	#map{
+        	#map {
         		top:0;
-				bottom:0;
+			bottom:0;
         		width:auto;
-				height:auto;
-				margin-left: auto;
-				margin-right: auto;
-				box-shadow: 0 0 20px #0D0D0D;
-				background-color: #edf8fa;
-				z-index: 1;
+			height:auto;
+			margin-left: auto;
+			margin-right: auto;
+			box-shadow: 0 0 20px #0D0D0D;
+			background-color: #edf8fa;
+			z-index: 1;
         	}
-			@font-face {
+		@font-face {
 			font-family: vollkorn;
 			font-style: normal;
 			font-weight: 400;
 			src: url(vollkorn-regular-webfont.woff);
 			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-        	body{
+		}
+        	body {
         		margin:0;
-				padding:0;
-				background-color: lightgray;
+			padding:0;
+			background-color: lightgray;
         	}       	
-        	html{
+        	html {
         		height:100%;
         	}
-			#buttons{
+			#buttons {
 				position: absolute;
 				width: 200px;
 				height:200px;
@@ -32,13 +32,13 @@
 				top: 430px;
 				z-index: 9;
 			}
-			#showhide{
+			#showhide {
 				position: absolute;
 				right: 10px;
 				bottom:3%;
 				z-index: 9;
 			}
-			#legdiv_income{
+			#legdiv_income {
 				position: absolute;
 				left: 280px;
 				top: 10px;
@@ -51,7 +51,7 @@
 				font: 14px/100% 'Vollkorn', serif;
 				color: #FFFFFF;				
 			}
-			#legdiv_education{
+			#legdiv_education {
 				position: absolute;
 				left: 280px;
 				top: 10px;
@@ -64,7 +64,7 @@
 				font: 14px/100% 'Vollkorn', serif; 
 				color: #FFFFFF;
 			}
-			#legdiv_poverty{
+			#legdiv_poverty {
 				position: absolute;
 				left: 280px;
 				top: 10px;
@@ -121,7 +121,7 @@
 				right:2px;
 				top:35px;
 			}
-			#graph_Title{
+			#graph_Title {
 				color: #ffffff;
 				white-space: nowrap;
 				position: absolute;
@@ -216,12 +216,12 @@
 				font: 14px/100% 'Vollkorn', serif;
 				color: #FFFFFF;
 			}
-			#layerThemes ul{
+			#layerThemes ul {
 				margin: 2px 0 0 0;
 				padding: 4px 7px 17px 7px;
 				border-bottom: 1px solid rgba(35,87,146,0.4);
 			}
-			#layerThemes ul li{
+			#layerThemes ul li {
 				float: left;
 				margin: 0 2px 0 1px;
 				padding: 2px 7px 2px 7px;
@@ -234,13 +234,13 @@
 				background-color: rgba(255,0,0,0.4);
 				color: #ffffff;
 			}
-			#layerThemes ul li a{
+			#layerThemes ul li a {
 				color: #ffffff;
 			}
-			#layerThemes ul li.selected{
+			#layerThemes ul li.selected {
 				background-color: rgba(255,0,0,0.4);
 			}
-			#layerThemes ul li.unselected:hover{
+			#layerThemes ul li.unselected:hover {
 				background-color: rgba(255,0,0,0.4);
 				cursor: pointer;
 			}
@@ -248,14 +248,14 @@
 				font: 14px/100% 'Vollkorn', serif;
 				padding: 5px;
 			}
-			#buttonGraphDiv{
+			#buttonGraphDiv {
 				font: 14px/100% 'Vollkorn', serif;
 				color: #FFFFFF;
 				background-color: rgba(40,40,39,0.75);
 				border-radius: 6px;
 				border: 2px solid rgba(255,0,0,0.4);				
 			}
-			input[type=checkbox]:not(old){
+			input[type=checkbox]:not(old) {
 			  width     : 2em;
 			  margin    : 0;
 			  padding   : 0;
@@ -263,13 +263,13 @@
 			  opacity   : 0;
 			}
 
-			input[type=checkbox]:not(old) + label{
+			input[type=checkbox]:not(old) + label {
 			  display      : inline-block;
 			  margin-left  : -2em;
 			  line-height  : 1.5em;
 			}
 
-			input[type=checkbox]:not(old) + label > span{
+			input[type=checkbox]:not(old) + label > span {
 			  display          : inline-block;
 			  width            : 0.875em;
 			  height           : 0.875em;
@@ -279,11 +279,11 @@
 			  background       : rgb(228, 228, 228);
 			  vertical-align   : bottom;
 			}
-			input[type=checkbox]:not(old):checked + label > span{
+			input[type=checkbox]:not(old):checked + label > span {
 			  background: rgba(255,0,0,0.4);
 			  border: 0.0625em solid rgba(255,0,0,0.4);
 			}
-			input[type=checkbox]:not(old):checked + label > span:before{
+			input[type=checkbox]:not(old):checked + label > span:before {
 			  content     : '✓';
 			  display     : block;
 			  width       : 1em;
