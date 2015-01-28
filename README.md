@@ -33,8 +33,8 @@ Note: If you are using OSGeo-Live, these programs come pre-installed.
 
 #External Libraries requiring internet access or local copy:
     - d3.js – http://d3js.org/d3.v3.min.js
-    - Open Layers 3 – http://ol3js.org/en/master/build/ol.js
-    - Open Layers 3  css  - http://ol3js.org/en/master/css/ol.css
+    - OpenLayers 3 – http://ol3js.org/en/master/build/ol.js
+    - OpenLayers 3  css  - http://ol3js.org/en/master/css/ol.css
 
 #Data Structure:
     Data: Contains all spatial data for this project.
