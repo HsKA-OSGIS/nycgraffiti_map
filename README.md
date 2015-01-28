@@ -42,6 +42,6 @@ Styles: Contains .sld files to style the spatial data.
 5.	Publish the 6 vector layers in the pgAdmin database to the PostGIS formatted GeoServer data store. The Declared SRSs are EPSG:2263 for every layer. Apply the correlated style to each layer.
 6.	Publish the Heatmap4.tif to the GeoTiff formatted GeoServer data store. The Declared SRS is EPSG:2263. Apply the heat map style to this layer.
 7.	Take the contents of the Index folder and place them where you want the webpage to be located.  Make sure you can access GeoGerver and pgAdmin from this location. 
-8.	In the index_4.html, update lines 254,267,279,292,305,317,329 with the location of your GeoServer.
+8.	In the index.html, update lines 254,267,279,292,305,317,329 with the location of your GeoServer.
 9.	Update lines 256,269,281,294,307,319,331 with the names of your layers in GeoServer.
 
