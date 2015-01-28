@@ -48,7 +48,7 @@ Note: If you are using OSGeo-Live, these programs come pre-installed.
 4.	In your new workspace, add the 8 '.sld' files from the styles folder. Use the file name to name the style for clarity of distinction. Copy and paste the contents of each file and save the new styles.
 5.	Publish the 6 vector layers in the pgAdmin database to the PostGIS formatted GeoServer data store. The Declared SRSs are EPSG:2263 (NAD83 / New York Long Island (ftUS)) for every layer. Apply the correlated style to each layer.
 6.	Publish the Heatmap4.tif to the GeoTiff formatted GeoServer data store. The Declared SRS is EPSG:2263 (NAD83 / New York Long Island (ftUS)). Apply the heat map style to this layer.
-7.	Take the contents of the Index folder and place them where you want the webpage to be located.  Make sure you can access GeoGerver and pgAdmin from this location. 
+7.	Take the contents of the Index folder and place them where you want the webpage to be located (i.e. in the var/www/html folder on Apache, in OSGeo-Live).  Make sure you can access GeoGerver and pgAdmin from this location. 
 8.	In the index.html, update lines of code 250,261,272,283,294,305,316 with the location of your GeoServer.
 9.	Update lines of code 252,263,274,285,296,307,318 with the names of your layers in GeoServer.
 
