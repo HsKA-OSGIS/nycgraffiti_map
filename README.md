@@ -28,9 +28,8 @@ DSNY Graffiti data - NYC Open Data - public domain
 
 2012 ACS 5 year estimates - US Census Bureau - public domain:
 
-    -Poverty status in the past 12 months
-    
-    -Income in the past 12 months.
+    - Poverty status in the past 12 months
+    - Income in the past 12 months.
     
 *ACS - American Community Survey
 
@@ -67,4 +66,4 @@ Styles: Contains .sld files to style the spatial data.
 8.	In the index.html, update lines of code 250,261,272,283,294,305,316 with the location of your GeoServer.
 9.	Update lines of code 252,263,274,285,296,307,318 with the names of your layers in GeoServer.
 
-Note: The NYC Graffiti map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. You may expierence alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
+Note: The NYC Graffiti map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. You may experience alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
