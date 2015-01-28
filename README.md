@@ -1,7 +1,6 @@
 # nycgraffiti_map
 Repository for OpenSource project NYC Graffiti Map, WS 2014-2015, January 2015, HsKA.
 
-
 # What is it?
 The NYC Graffiti map has been developed by two passionate students from the Geomatics department of the Hochschule Karlsruhe Technik und Wirstchaft. It was designed as an educational tool to be used by students and educators that can learn/teach about demographics, spatial correlation and data interpretation using a subject that most pupils raised in an urban environment have first-hand experiences with.
 
@@ -40,7 +39,7 @@ Note: If you are using OSGeo-Live, these programs come pre-installed.
 #Data Structure:
     Data: Contains all spatial data for this project.
     Index: Contains the files and references for the webpage. 
-    Styles: Contains .sld files to style the spatial data.
+    Styles: Contains '.sld' files to style the spatial data.
 
 #Installation Steps:
 1.	Create a new database in pgAdmin.
