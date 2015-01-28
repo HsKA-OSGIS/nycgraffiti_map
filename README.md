@@ -16,20 +16,14 @@ Cristina Balmus - bacr1012@hs-karlsruhe.de
 #Data and data sources
 All datasets used in this project were derived from the following sources:
 
-After school programs - NYC Open Data - public domain
-
-2010 census tracts - NYC Open Data - public domain
-
-NYC borough boundaries - NYC Open Data - public domain
-
-OSM Basemap - OpenStreetMap Tile Server - ODbl
-
-DSNY Graffiti data - NYC Open Data - public domain
-
-2012 ACS 5 year estimates - US Census Bureau - public domain:
-
-    - Poverty status in the past 12 months
-    - Income in the past 12 months.
+    After school programs - NYC Open Data - public domain
+    2010 census tracts - NYC Open Data - public domain
+    NYC borough boundaries - NYC Open Data - public domain
+    OSM Basemap - OpenStreetMap Tile Server - ODbl
+    DSNY Graffiti data - NYC Open Data - public domain
+    2012 ACS 5 year estimates - US Census Bureau - public domain:
+        - Poverty status in the past 12 months
+        - Income in the past 12 months.
     
 *ACS - American Community Survey
 
