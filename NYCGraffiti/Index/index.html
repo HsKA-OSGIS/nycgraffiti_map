@@ -2,7 +2,7 @@
 <html>
     <head>
 	
-        <title>NYC Graffiti</title>
+        <title>NYC Graffiti Map</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 		<!-- Scripts-->
@@ -220,12 +220,12 @@ var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 	
-	// adding info window to map as overlay
+	// adds info window to the map as overlay
 	var overlay = new ol.Overlay({
 	  	element: container
 	});
 
-	// create the map
+	// creates the map
 	var map = new ol.Map({
 		target : 'map',
 		renderer : 'canvas',
@@ -238,7 +238,7 @@ var closer = document.getElementById('popup-closer');
 	  	})
 	});
 
-	// defining layer variables
+	// calling layer variables served as WMS from Geoserver
 	var newLayer = new ol.layer.Tile({
 		source : new ol.source.OSM(),
 		isbaselayer:true,
@@ -321,7 +321,7 @@ var closer = document.getElementById('popup-closer');
 		})
 	});
 	
-	// adding layers to the map and controlling visibility when opening the map
+	// adding layers to the map and controlling layer visibility when first opening the map
 	function loadMap(){
 	map.addLayer(newLayer);
 	map.addLayer(vectorLayer);
@@ -346,7 +346,7 @@ var closer = document.getElementById('popup-closer');
 			zoom : 11
 	});
 	
-	// info window
+	// creating info window and controlling its visibility
 	map.on('click', function(evt) {
 		var coordinate = evt.coordinate;
 		var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
@@ -362,7 +362,7 @@ var closer = document.getElementById('popup-closer');
 	  container.style.display = 'block';
 	});
 
-	//setting layer control	
+	//setting layer visibility controls	
 	function myCheckbox(){
 		if (document.getElementById('boundaries').checked==true)
 		{
@@ -443,7 +443,7 @@ var closer = document.getElementById('popup-closer');
 		}
 	}
 
-	//setting legend control
+	//setting legend controls
 	function show_legend_income(){
 		if (document.getElementById('income').checked==true)
 		{ 
@@ -458,6 +458,7 @@ var closer = document.getElementById('popup-closer');
 		}
 	}
 	
+	// adding transition effects to legend
 	$('#income').click(function(){
     		this.checked?$('#income_legend,#legdiv_income, #label_income').show(500):$('#income_legend,#legdiv_income, #label_income').hide(500);
 	});
@@ -498,7 +499,7 @@ var closer = document.getElementById('popup-closer');
     		this.checked?$('#poverty_legend,#legdiv_poverty, #label_poverty').show(500):$('#poverty_legend,#legdiv_poverty, #label_poverty').hide(500);
 	});
 	
-	//setting transparency control
+	// setting transparency controls
 	function updateOpacity(value){
 		vectorLayer.setOpacity(value);
 	}
@@ -529,13 +530,13 @@ var closer = document.getElementById('popup-closer');
 		}
 	}
 	
-	// toggle about section
+	// sets animation effect (toggle) to 'about' section
 	$("#about").click(function() { 
 		$("#about_div").toggle('slow');
 	});
 	
 	// setting graph controls
-function renderChart(graph, color, g_title, g_xaxis, g_yaxis, barWidth, labelWidth, valueWidth) {
+	function renderChart(graph, color, g_title, g_xaxis, g_yaxis, barWidth, labelWidth, valueWidth) {
 		var graph = "";
 		var color = "";
 		var g_title = "";
@@ -906,11 +907,12 @@ function renderChart(graph, color, g_title, g_xaxis, g_yaxis, barWidth, labelWid
 
 	var button_beg = '<button id="buttonGraphDiv" onclick="showhide()" >', button_end = '</button>';
     	var show_button = 'Show Diagram', hide_button = 'Hide Diagram';
-    	
+    
+    // setting control to show/hide graphs	
     function showhide() {
-        var div = document.getElementById( "graphs" );
-        var showhide = document.getElementById( "showhide" );
-        if ( div.style.display !== "none" ) {
+        var div = document.getElementById("graphs");
+        var showhide = document.getElementById("showhide");
+        if (div.style.display !== "none") {
             div.style.display = "none";
             button = show_button;
             showhide.innerHTML = button_beg + button + button_end;
@@ -920,18 +922,19 @@ function renderChart(graph, color, g_title, g_xaxis, g_yaxis, barWidth, labelWid
             showhide.innerHTML = button_beg + button + button_end;
         }
     }
-    function setup_button( status ) {
-        if ( status == 'show' ) {
+    function setup_button(status) {
+        if (status == 'show') {
             button = hide_button;
-        } else {
+        } 
+        else {
             button = show_button;
         }
-        var showhide = document.getElementById( "showhide" );
+        var showhide = document.getElementById("showhide");
         showhide.innerHTML = button_beg + button + button_end;
     }
     window.onload = function () {
-        setup_button( 'hide' );
-        showhide(); // if setup_button is set to 'show' comment this line
+        setup_button('hide');
+        showhide(); 
     }
 	
 </script>
@@ -1152,6 +1155,10 @@ function renderChart(graph, color, g_title, g_xaxis, g_yaxis, barWidth, labelWid
 		High School,101316
 		Some College,81422
 		BA or Higher,91423 </script>
-	<script>renderChart();</script>
+
+<script>
+renderChart();
+</script>
+
 </body>
 </html>
