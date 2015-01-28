@@ -1,15 +1,16 @@
 # nycgraffiti_map
-Repository for OpenSource project NYC Graffiti Map
+Repository for OpenSource project NYC Graffiti Map, WS 2014-2015, January 2015, HsKA.
 
 
 # What is it?
 The NYC Graffiti map has been developed by two passionate students from the Geomatics department of the Hochschule Karlsruhe Technik und Wirstchaft. It was designed as an educational tool to be used by students and educators that can learn/teach about demographics, spatial correlation and data interpretation using a subject that most pupils raised in an urban environment have first-hand experiences with.
 
 # Licensing
-Please see the file called License.
+Please see the file called 'License'.
 
 # Authors
-Alex Boie,
+Alex Boie
+
 Cristina Balmus
 
 #Data and data sources
@@ -33,19 +34,19 @@ DSNY Graffiti data - NYC Open Data - public domain
     
 *ACS - American Community Survey
 
-#Programs Used
-GeoServer version 2.5 or later
+#Software Used
+- GeoServer version 2.5 or later
 
-pgAdmin III version 1.18.2 or later
+- pgAdmin III version 1.18.2 or later
 
 Note: If you are using OSGeo-Live, these programs come pre-installed.
 
 #External Libraries requiring internet access or local copy:
-d3.js – http://d3js.org/d3.v3.min.js
+- d3.js – http://d3js.org/d3.v3.min.js
 
-Open Layers 3 – http://ol3js.org/en/master/build/ol.js
+- Open Layers 3 – http://ol3js.org/en/master/build/ol.js
 
-Open Layers 3  css  - http://ol3js.org/en/master/css/ol.css
+- Open Layers 3  css  - http://ol3js.org/en/master/css/ol.css
 
 
 #Data Structure:
@@ -66,4 +67,4 @@ Styles: Contains .sld files to style the spatial data.
 8.	In the index.html, update lines 254,267,279,292,305,317,329 with the location of your GeoServer.
 9.	Update lines 256,269,281,294,307,319,331 with the names of your layers in GeoServer.
 
-Note: The web map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. You may expierence alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
+Note: The NYC Graffiti map was developed using OSGeo-Live in VirtualBox. The position of elements was set for a high resolution projector in VirtualBox. You may expierence alignment errors on lower resolution monitors or in browsers outside of the VirtualBox environment. 
